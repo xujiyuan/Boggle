@@ -15,6 +15,7 @@
             <label for="mazeEntry">Please input your grid and click "Process"</label><br/>
             <textarea v-model="boggleData" name="mazeEntry" id="mazeEntry" cols="30" rows="10"></textarea>
             <br/>
+            <div>Word: {{maxWord}}, score: {{maxSum}}</div>
             <input id="mazeEntrySubmit" type="submit" value="Process">
             <div id="mazeSolution"></div>
         </form>
@@ -32,11 +33,13 @@
                 M: 0,
                 N: 0,
                 maxSum: 0,
-                maxWord: ''
+                maxWord: 'n/a'
             }
         },
         methods: {
             playBoggleGame() {
+                e.preventDefault();
+
                 let stringToArray = this.parseInput(this.boggleData);
                 const matrix = this.convertTo2D(stringToArray);
                 console.log(matrix[0]);
@@ -78,6 +81,7 @@
                         if (row >= 0
                             && col >= 0
                             && !visited[row][col]
+                            && (i===row || j===col)
                             && (this.vowels.includes(word.charAt(0)))
                         ) {
                             // console.log('location', row, col);
@@ -85,10 +89,9 @@
                         }
                     }
                 }
-                console.log('word is', word);
+                console.log('word is', word, this.calculateStringValue(word));
                 word = word.slice(-1);
-                console.log('word after is', word);
-
+                //console.log('word after is', word);
                 visited[i][j] = false;
             },
             /*
@@ -123,7 +126,7 @@
             },
             calculateStringValue(string) {
                 return [0,...string].reduce((sum, char) =>
-                    sum + this.coverCharToNumber(char)
+                    sum + this.convertCharToNumber(char)
                 )
             }
 
