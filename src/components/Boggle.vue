@@ -28,7 +28,9 @@
             return {
                 boggleData:'',
                 vowels: ['a', 'e', 'i', 'o', 'u'],
-                badGuy: 'y'
+                badGuy: 'y',
+                M: 0,
+                N: 0,
             }
         },
         methods: {
@@ -37,6 +39,10 @@
                 const matrix = this.convertTo2D(stringToArray);
                 console.log(matrix[0]);
                 console.log(matrix[1]);
+
+                // start traverse the matrix to look for all suitable words for comparison
+                this.M = matrix.length;
+                this.N = matrix[0].length;
             },
             test() {
                 return 'test';
