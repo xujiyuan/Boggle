@@ -15,8 +15,11 @@ describe('Boggle.vue', () => {
     });
 
     it('parseInput should covert string into 1D list', () => {
-
-        expect(1).equals(2);
+        const result = wrapper.vm.parseInput('ab\ncd\nef');
+        expect(result.length).equals(3);
+        expect(result[0]).equals('ab');
+        expect(result[1]).equals('cd');
+        expect(result[2]).equals('ef');
     });
 
     it('covertTo2D should take a list and covert it to 2d array', () => {

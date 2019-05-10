@@ -31,7 +31,8 @@
         },
         methods: {
             playBoggleGame() {
-              console.log(this.boggleData);
+                let stringToArray = this.parseInput(this.boggleData);
+                console.log(stringToArray);
             },
             test() {
                 return 'test';
@@ -42,8 +43,8 @@
             covertTo2D() {
                 return 1;
             },
-            parseInput() {
-                return 1;
+            parseInput(inputString) {
+                return inputString.split(/\r?\n/);
             },
             coverCharToNumber() {
                 return 1;
