@@ -34,7 +34,7 @@
         methods: {
             playBoggleGame() {
                 let stringToArray = this.parseInput(this.boggleData);
-                const matrix = this.covertTo2D(stringToArray);
+                const matrix = this.convertTo2D(stringToArray);
                 console.log(matrix[0]);
                 console.log(matrix[1]);
             },
@@ -51,7 +51,7 @@
             /*
                 Provide a 1-d array, covert it to 2d
              */
-            covertTo2D(list) {
+            convertTo2D(list) {
                 let result = [];
                 for (let i = 0; i < list.length; i++) {
                     if (list[i].length > 0) { // prevent extra new lines
@@ -69,7 +69,7 @@
             /*
                 Given a char, return the value associated
              */
-            coverCharToNumber() {
+            convertCharToNumber() {
                 return 1;
             }
 

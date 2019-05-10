@@ -22,14 +22,14 @@ describe('Boggle.vue', () => {
         expect(result[2]).equals('ef');
     });
 
-    it('covertTo2D should take a list and covert it to 2d array', () => {
+    it('convertTo2D should take a list and covert it to 2d array', () => {
         const result = wrapper.vm.covertTo2D(['AB','CD', 'EF']);
         expect(result[0][0]).equals('A');
         expect(result[0][1]).equals('B');
         expect(result[2][1]).equals('F');
     });
 
-    it('covertTo2D should filter out empty string from input', () => {
+    it('convertTo2D should filter out empty string from input', () => {
         const result = wrapper.vm.covertTo2D(['AB','CD', 'EF', '']);
         // console.log(result);
         expect(result.length).equals(3);
@@ -37,7 +37,7 @@ describe('Boggle.vue', () => {
     });
 
 
-    it('coverCharToNumber should change a char to a number for calculation purpose', () => {
+    it('convertCharToNumber should change a char to a number for calculation purpose', () => {
         const vowels = ['a', 'e', 'i', 'o', 'u'];
         let result;
         vowels.forEach(char => {
