@@ -86,8 +86,9 @@
                     }
                 }
                 console.log('word is', word);
+                word = word.slice(-1);
+                console.log('word after is', word);
 
-                word = '' + word.charAt(word.length - 1);
                 visited[i][j] = false;
             },
             /*
@@ -119,6 +120,11 @@
                 } else {
                     return -2;
                 }
+            },
+            calculateStringValue(string) {
+                return [0,...string].reduce((sum, char) =>
+                    sum + this.coverCharToNumber(char)
+                )
             }
 
         }
