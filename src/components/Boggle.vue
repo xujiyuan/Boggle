@@ -13,7 +13,7 @@
 
         <form id="mazeForm" @submit="playBoggleGame">
             <label for="mazeEntry">Please input your grid and click "Process"</label><br/>
-            <textarea name="mazeEntry" id="mazeEntry" cols="30" rows="10"></textarea>
+            <textarea v-model="boggleData" name="mazeEntry" id="mazeEntry" cols="30" rows="10"></textarea>
             <br/>
             <input id="mazeEntrySubmit" type="submit" value="Process">
             <div id="mazeSolution"></div>
@@ -24,9 +24,14 @@
 <script>
     export default {
         name: 'Boggle',
+        data() {
+            return {
+                boggleData:''
+            }
+        },
         methods: {
             playBoggleGame() {
-              console.log('this is called');
+              console.log(this.boggleData);
             },
             test() {
                 return 'test';
