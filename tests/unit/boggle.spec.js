@@ -38,6 +38,22 @@ describe('Boggle.vue', () => {
 
 
     it('coverCharToNumber should change a char to a number for calculation purpose', () => {
+        const vowels = ['a', 'e', 'i', 'o', 'u'];
+        let result;
+        vowels.forEach(char => {
+            result = wrapper.vm.coverCharToNumber(char);
+            expect(result).equals(3);
+        });
+
+        result = wrapper.vm.coverCharToNumber('y');
+        expect(result).equals(-10);
+
+        result = wrapper.vm.coverCharToNumber('Y');
+        expect(result).equals(-10);
+
+        result = wrapper.vm.coverCharToNumber('g');
+        expect(result).equals(-2);
+
         expect(1).equals(2);
     });
 

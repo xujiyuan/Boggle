@@ -26,7 +26,9 @@
         name: 'Boggle',
         data() {
             return {
-                boggleData:''
+                boggleData:'',
+                vowels: ['a', 'e', 'i', 'o', 'u'],
+                badGuy: 'y'
             }
         },
         methods: {
@@ -39,11 +41,15 @@
             test() {
                 return 'test';
             },
+
+            /*
+                All the functions below should be put in a service
+            */
             findWord() {
                 return 1;
             },
             /*
-            Provide a 1-d array, covert it to 2d
+                Provide a 1-d array, covert it to 2d
              */
             covertTo2D(list) {
                 let result = [];
@@ -54,9 +60,15 @@
                 }
                 return result;
                 },
+            /*
+                Given a \n separated string, covert it to a 1-d list
+             */
             parseInput(inputString) {
                 return inputString.split(/\r?\n/);
             },
+            /*
+                Given a char, return the value associated
+             */
             coverCharToNumber() {
                 return 1;
             }
