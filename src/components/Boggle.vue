@@ -23,7 +23,12 @@
 </template>
 <script>
     export default {
-        name: 'Boggle'
+        name: 'Boggle',
+        methods: {
+            test() {
+                return 'test';
+            }
+        }
     }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
