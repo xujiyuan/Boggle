@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>"Bad Boggle" Instructions</h2>
+        <h2>"Bad Boggle"</h2>
         <pre>
       Example Input:
       urbx
@@ -19,6 +19,7 @@
             <input id="mazeEntrySubmit" type="submit" value="Process">
             <div id="mazeSolution"></div>
         </form>
+        <p>Beta 0.0.1 release 5/10/2019 10:55am est by Jimmy Xu</p>
     </div>
 
 </template>
@@ -40,7 +41,7 @@
             playBoggleGame(e) {
                 e.preventDefault();
 
-                // TODO: add validation to the user input
+                // TODO: add validation to the user input, no time for this
 
                 let stringToArray = this.parseInput(this.boggleData);
                 const matrix = this.convertTo2D(stringToArray);
@@ -73,9 +74,10 @@
                         if (row >= 0
                             && col >= 0
                             && !visited[row][col]
-                            && (i===row || j===col) //This line will make it only traverse on cardinal direction
+                            && (i === row || j === col) //This line will make it only traverse on cardinal direction
                             && (this.vowels.includes(word.charAt(0))) // we do not want to consider Y situation, This is based on assumption that there is always a vowel char
-                            && (word.toLowerCase().indexOf('y') < 0 || (word.toLowerCase().indexOf('y') >0 && this.calculateStringValue(word.substring(0, word.toLowerCase().indexOf('y'))) > 10))
+                            && this.calculateStringValue(word) > 0 //This is also based on assumption that there is always a vowel char
+                            && (word.toLowerCase().indexOf('y') < 0 || (word.toLowerCase().indexOf('y') > 0 && this.calculateStringValue(word.substring(0, word.toLowerCase().indexOf('y'))) > 10))
                         ) {
                             // We need to handle special cases for y to improve performance
                             // case 1: 3,3,3,-10,3,3,3,3 the highest score should be entire string. we include -10 which means continue search
@@ -86,19 +88,12 @@
                 }
 
                 let score = this.calculateStringValue(word);
-                if(this.maxSum < score){
+                if (this.maxSum < score) {
                     this.maxSum = score;
                     this.maxWord = word;
                 }
-                console.log('word is', word, this.calculateStringValue(word));
                 word = word.slice(-1);
                 visited[i][j] = false;
-            },
-            moveWithY(inputString) {
-                let index = inputString.toLowerCase().indexOf('y');
-                if(inputString.toLowerCase().indexOf('y') >0 && this.calculateStringValue(inputString.substring(0, inputString.toLowerCase().indexOf('y'))) > 10){
-                }
-                return false;
             },
             /*
                 Provide a 1-d array, covert it to 2d
@@ -131,11 +126,10 @@
                 }
             },
             calculateStringValue(string) {
-                return [0,...string].reduce((sum, char) =>
+                return [0, ...string].reduce((sum, char) =>
                     sum + this.convertCharToNumber(char)
                 )
             }
-
         }
     }
 </script>
