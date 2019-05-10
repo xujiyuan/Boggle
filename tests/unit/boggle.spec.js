@@ -23,8 +23,19 @@ describe('Boggle.vue', () => {
     });
 
     it('covertTo2D should take a list and covert it to 2d array', () => {
-        expect(1).equals(2);
+        const result = wrapper.vm.covertTo2D(['AB','CD', 'EF']);
+        expect(result[0][0]).equals('A');
+        expect(result[0][1]).equals('B');
+        expect(result[2][1]).equals('F');
     });
+
+    it('covertTo2D should filter out empty string from input', () => {
+        const result = wrapper.vm.covertTo2D(['AB','CD', 'EF', '']);
+        // console.log(result);
+        expect(result.length).equals(3);
+        expect(result[0][0]).equals('A');
+    });
+
 
     it('coverCharToNumber should change a char to a number for calculation purpose', () => {
         expect(1).equals(2);

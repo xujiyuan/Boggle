@@ -32,7 +32,9 @@
         methods: {
             playBoggleGame() {
                 let stringToArray = this.parseInput(this.boggleData);
-                console.log(stringToArray);
+                const matrix = this.covertTo2D(stringToArray);
+                console.log(matrix[0]);
+                console.log(matrix[1]);
             },
             test() {
                 return 'test';
@@ -40,9 +42,18 @@
             findWord() {
                 return 1;
             },
-            covertTo2D() {
-                return 1;
-            },
+            /*
+            Provide a 1-d array, covert it to 2d
+             */
+            covertTo2D(list) {
+                let result = [];
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i].length > 0) { // prevent extra new lines
+                        result[i] = list[i].split('');
+                    }
+                }
+                return result;
+                },
             parseInput(inputString) {
                 return inputString.split(/\r?\n/);
             },
