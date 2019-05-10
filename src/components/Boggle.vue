@@ -11,7 +11,7 @@
       Word: "uofu", Score: 7
     </pre>
 
-        <form id="mazeForm">
+        <form id="mazeForm" @submit="playBoggleGame">
             <label for="mazeEntry">Please input your grid and click "Process"</label><br/>
             <textarea name="mazeEntry" id="mazeEntry" cols="30" rows="10"></textarea>
             <br/>
@@ -25,6 +25,9 @@
     export default {
         name: 'Boggle',
         methods: {
+            playBoggleGame() {
+              console.log('this is called');
+            },
             test() {
                 return 'test';
             }
