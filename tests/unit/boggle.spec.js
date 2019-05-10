@@ -23,14 +23,14 @@ describe('Boggle.vue', () => {
     });
 
     it('convertTo2D should take a list and covert it to 2d array', () => {
-        const result = wrapper.vm.covertTo2D(['AB','CD', 'EF']);
+        const result = wrapper.vm.convertTo2D(['AB','CD', 'EF']);
         expect(result[0][0]).equals('A');
         expect(result[0][1]).equals('B');
         expect(result[2][1]).equals('F');
     });
 
     it('convertTo2D should filter out empty string from input', () => {
-        const result = wrapper.vm.covertTo2D(['AB','CD', 'EF', '']);
+        const result = wrapper.vm.convertTo2D(['AB','CD', 'EF', '']);
         // console.log(result);
         expect(result.length).equals(3);
         expect(result[0][0]).equals('A');
@@ -41,20 +41,18 @@ describe('Boggle.vue', () => {
         const vowels = ['a', 'e', 'i', 'o', 'u'];
         let result;
         vowels.forEach(char => {
-            result = wrapper.vm.coverCharToNumber(char);
+            result = wrapper.vm.convertCharToNumber(char);
             expect(result).equals(3);
         });
 
-        result = wrapper.vm.coverCharToNumber('y');
+        result = wrapper.vm.convertCharToNumber('y');
         expect(result).equals(-10);
 
-        result = wrapper.vm.coverCharToNumber('Y');
+        result = wrapper.vm.convertCharToNumber('Y');
         expect(result).equals(-10);
 
-        result = wrapper.vm.coverCharToNumber('g');
+        result = wrapper.vm.convertCharToNumber('g');
         expect(result).equals(-2);
-
-        expect(1).equals(2);
     });
 
     it('findWord should find possible words', () => {
