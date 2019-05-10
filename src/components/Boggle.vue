@@ -78,6 +78,7 @@
                         if (row >= 0
                             && col >= 0
                             && !visited[row][col]
+                            && (this.vowels.includes(word.charAt(0)))
                         ) {
                             // console.log('location', row, col);
                             this.findWord(matrix, visited, row, col, word);
