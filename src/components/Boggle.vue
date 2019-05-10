@@ -37,23 +37,17 @@
             }
         },
         methods: {
-            playBoggleGame() {
+            playBoggleGame(e) {
                 e.preventDefault();
+
+                // TODO: add validation to the user input
 
                 let stringToArray = this.parseInput(this.boggleData);
                 const matrix = this.convertTo2D(stringToArray);
-                console.log(matrix[0]);
-                console.log(matrix[1]);
 
                 // start traverse the matrix to look for all suitable words for comparison
                 this.M = matrix.length;
                 this.N = matrix[0].length;
-
-                // for(let i=0; i<matrix.length; i++){ //TODO: need tested
-                //     for (let j=0; j<matrix[i].length; j++){
-                //         matrix[i][j] = this.coverCharToNumber(matrix[i][j]);
-                //     }
-                // }
 
                 let visited = Array(this.M).fill(false).map(() => Array(this.N).fill(false));
 
@@ -76,23 +70,35 @@
 
                 for (let row = i - 1; row <= i + 1 && row < this.M; row++) {
                     for (let col = j - 1; col <= j + 1 && col < this.N; col++) {
-                        //console.log('i,j', i, j);
-
                         if (row >= 0
                             && col >= 0
                             && !visited[row][col]
-                            && (i===row || j===col)
-                            && (this.vowels.includes(word.charAt(0)))
+                            && (i===row || j===col) //This line will make it only traverse on cardinal direction
+                            && (this.vowels.includes(word.charAt(0))) // we do not want to consider Y situation, This is based on assumption that there is always a vowel char
+                            && (word.toLowerCase().indexOf('y') < 0 || (word.toLowerCase().indexOf('y') >0 && this.calculateStringValue(word.substring(0, word.toLowerCase().indexOf('y'))) > 10))
                         ) {
-                            // console.log('location', row, col);
+                            // We need to handle special cases for y to improve performance
+                            // case 1: 3,3,3,-10,3,3,3,3 the highest score should be entire string. we include -10 which means continue search
+                            // case 2: 3,3,-10,3,3,3,3,3 the highest is on the right side of -10, do not include -10, stop search
                             this.findWord(matrix, visited, row, col, word);
                         }
                     }
                 }
+
+                let score = this.calculateStringValue(word);
+                if(this.maxSum < score){
+                    this.maxSum = score;
+                    this.maxWord = word;
+                }
                 console.log('word is', word, this.calculateStringValue(word));
                 word = word.slice(-1);
-                //console.log('word after is', word);
                 visited[i][j] = false;
+            },
+            moveWithY(inputString) {
+                let index = inputString.toLowerCase().indexOf('y');
+                if(inputString.toLowerCase().indexOf('y') >0 && this.calculateStringValue(inputString.substring(0, inputString.toLowerCase().indexOf('y'))) > 10){
+                }
+                return false;
             },
             /*
                 Provide a 1-d array, covert it to 2d
