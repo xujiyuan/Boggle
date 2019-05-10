@@ -45,6 +45,11 @@ describe('Boggle.vue', () => {
             expect(result).equals(3);
         });
 
+        vowels.forEach(char => {
+            result = wrapper.vm.convertCharToNumber(char.toUpperCase());
+            expect(result).equals(3);
+        });
+
         result = wrapper.vm.convertCharToNumber('y');
         expect(result).equals(-10);
 
