@@ -35,7 +35,20 @@
             },
             test() {
                 return 'test';
+            },
+            findWord() {
+                return 1;
+            },
+            covertTo2D() {
+                return 1;
+            },
+            parseInput() {
+                return 1;
+            },
+            coverCharToNumber() {
+                return 1;
             }
+
         }
     }
 </script>
