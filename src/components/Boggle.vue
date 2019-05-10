@@ -72,7 +72,7 @@
             convertCharToNumber(char) {
                 if(char.toLowerCase() === this.badGuy){
                     return -10;
-                } else if (this.vowels.includes(char)){
+                } else if (this.vowels.includes(char.toLowerCase())){
                     return 3;
                 } else {
                     return -2;
