@@ -93,7 +93,6 @@
                     this.maxSum = score;
                     this.maxWord = word;
                 }
-                word = word.slice(-1);
                 visited[i][j] = false;
             },
             /*
