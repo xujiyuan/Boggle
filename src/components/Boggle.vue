@@ -69,8 +69,14 @@
             /*
                 Given a char, return the value associated
              */
-            convertCharToNumber() {
-                return 1;
+            convertCharToNumber(char) {
+                if(char.toLowerCase() === this.badGuy){
+                    return -10;
+                } else if (this.vowels.includes(char)){
+                    return 3;
+                } else {
+                    return -2;
+                }
             }
 
         }
