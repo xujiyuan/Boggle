@@ -9,11 +9,6 @@ describe('Boggle.vue', () => {
         wrapper = shallowMount(Boggle);
     });
 
-    it('test method is called', () => {
-        const result = wrapper.vm.test();
-        expect(result).equals('test');
-    });
-
     it('parseInput should covert string into 1D list', () => {
         const result = wrapper.vm.parseInput('ab\ncd\nef');
         expect(result.length).equals(3);

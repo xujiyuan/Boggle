@@ -34,12 +34,13 @@
                 M: 0,
                 N: 0,
                 maxSum: 0,
-                maxWord: 'n/a'
+                maxWord: 'Empty String'
             }
         },
         methods: {
             playBoggleGame(e) {
                 e.preventDefault();
+                let startTime = new Date();
 
                 // TODO: add validation to the user input, no time for this
 
@@ -57,9 +58,9 @@
                         this.findWord(matrix, visited, i, j, '');
                     }
                 }
-            },
-            test() {
-                return 'test';
+                let endTime = new Date();
+                let dif = endTime.getTime() - startTime.getTime();
+                console.log('performance check', Math.abs(dif/1000));
             },
 
             /*
