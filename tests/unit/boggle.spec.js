@@ -2,6 +2,8 @@ import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
 import Boggle from '@/components/Boggle.vue';
 
+//TODO: TEST CASES FOR MATRIXES against playBoggleGame function
+
 describe('Boggle.vue', () => {
     let wrapper;
 
